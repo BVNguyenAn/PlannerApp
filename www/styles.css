@@ -1,0 +1,31 @@
+
+:root{
+  --bg:#f7f9fc; --card:#fff; --ink:#0f172a; --muted:#64748b;
+  --primary:#3b82f6; --danger:#ef4444; --grid:#e6eef7;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.bar{position:sticky;top:0;display:flex;gap:12px;align-items:center;justify-content:space-between;
+  padding:12px 16px;background:#fff;border-bottom:1px solid var(--grid);z-index:10}
+h1{font-size:18px;margin:0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{border-radius:10px;border:1px solid var(--primary);background:var(--primary);color:#fff;padding:8px 12px;font-weight:600}
+button.secondary{background:#fff;color:var(--ink);border-color:var(--grid)}
+button.danger{background:#ef4444;border-color:#ef4444}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(1,minmax(0,1fr))}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1200px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border:1px solid var(--grid);border-radius:14px;overflow:hidden}
+.head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--grid)}
+.badge{font-size:12px;padding:4px 8px;border-radius:999px;border:1px solid #dbeafe;background:#eff6ff;color:#1d4ed8}
+.badge.rest{background:#f8fafc;border-color:#e5e7eb;color:#64748b}
+ul{list-style:none;margin:0;padding:12px;display:flex;flex-direction:column;gap:8px}
+li{display:flex;gap:8px;align-items:flex-start}
+li .txt{flex:1;padding:4px;border-radius:8px}
+li .txt[contenteditable="true"]:focus{background:#f1f5f9;outline:2px solid #e2e8f0}
+.mini{font-size:12px;padding:4px 8px;border-radius:8px;border:1px solid #ddd;background:#fff;color:#111}
+.counter{font-size:12px;color:var(--muted);padding:0 12px 12px 12px}
+.hint{font-size:13px;color:var(--muted)}
