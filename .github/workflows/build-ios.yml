@@ -1,0 +1,42 @@
+name: Build iOS IPA (Unsigned)
+
+on:
+  workflow_dispatch:   # chạy thủ công từ tab Actions
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+      - name: Build Archive (unsigned)
+        run: |
+          xcodebuild \
+            -scheme JumpPlannerApp \
+            -sdk iphoneos \
+            -configuration Release \
+            archive \
+            -archivePath build/JumpPlannerApp.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            PROVISIONING_PROFILE_SPECIFIER=""
+
+      - name: Export IPA (unsigned)
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath build/JumpPlannerApp.xcarchive \
+            -exportPath build \
+            -exportOptionsPlist ExportOptions.plist \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v3
+        with:
+          name: JumpPlannerApp-ipa
+          path: build/*.ipa
